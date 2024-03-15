@@ -19,12 +19,13 @@
 </head>
 <body>
 <div id="countdown">30:00</div>
+<div id="codeEntry">Enter code: <input type="text" id="codeInput"></div>
 
 <script>
     // Set the countdown time in minutes
     const countdownTime = 30;
     let timer;
-
+    
     // Function to start the countdown
     function startCountdown() {
         const countdownElement = document.getElementById('countdown');
@@ -51,18 +52,13 @@
     startCountdown();
 
     // Check if the code is entered correctly
-    document.addEventListener('keypress', function(e) {
-        if (e.key === '2') {
-            document.addEventListener('keypress', function(e) {
-                if (e.key === '0') {
-                    document.addEventListener('keypress', function(e) {
-                        if (e.key === '2') {
-                            clearInterval(timer);
-                            document.getElementById('countdown').innerHTML = "Vel gert, nú ferðist þið aftur til ársins 2024.";
-                        }
-                    });
-                }
-            });
+    document.getElementById('codeInput').addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+            const code = document.getElementById('codeInput').value;
+            if (code === '2024') {
+                clearInterval(timer);
+                document.getElementById('countdown').innerHTML = "Vel gert, nú ferðist þið aftur til ársins 2024.";
+            }
         }
     });
 </script>
